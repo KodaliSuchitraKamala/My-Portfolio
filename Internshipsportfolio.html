@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internships Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        /* Accordion-Style Showcase */
+        .accordion {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .accordion-item {
+            background-color: #fff;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .accordion-header {
+            background-color: #f7f7f7;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .accordion-header h3 {
+            margin: 0;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .accordion-header:hover {
+            background-color: #e0e0e0;
+        }
+
+        .duration {
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        .accordion-content {
+            padding: 20px;
+            display: none;
+            background-color: #fafafa;
+            border-top: 1px solid #eee;
+            font-size: 1em;
+            color: #555;
+        }
+
+        .accordion-content p {
+            margin: 0;
+        }
+
+        .accordion-item.active .accordion-content {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Split-Screen Layout */
+        .split-container {
+            display: flex;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-top: 50px;
+        }
+
+        .menu {
+            width: 30%;
+            background-color: #f7f7f7;
+            padding: 20px;
+        }
+
+        .menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu ul li {
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #e0e0e0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .menu ul li.active, .menu ul li:hover {
+            background-color: #d0d0d0;
+        }
+
+        .content {
+            width: 70%;
+            padding: 20px;
+            background-color: #fafafa;
+        }
+
+        .content-item {
+            display: none;
+        }
+
+        .content-item.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="section-title">Internships</h1>
+
+    <!-- Accordion-Style Showcase -->
+    <div class="accordion">
+        <div class="accordion-item">
+            <div class="accordion-header">
+                <h3>Data Science Internship - MindSparc <span class="duration">Jul 2024 - Oct 2024</span></h3>
+            </div>
+            <div class="accordion-content">
+                <p>I have used to work on data using Data Visualization , Machine Learning Models like Linear Regression using Python which makes interaction with the data and which makes the data or a content looks attractive to user or a client.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Split-Screen Layout -->
+    <div class="split-container">
+        <div class="menu">
+            <ul>
+                <li data-content="content1" class="active">MindSparc</li>
+            </ul>
+        </div>
+        <div class="content">
+            <div id="content1" class="content-item active">
+                <h3>Data Science Internship - MindSparc</h3>
+                <p>I have used to work on data using Data Visualization , Machine Learning Models like Linear Regression using Python which makes interaction with the data and which makes the data or a content looks attractive to user or a client.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript for Accordion and Split-Screen Layout -->
+<script>
+    // Accordion Functionality
+    document.querySelectorAll('.accordion-header').forEach(item => {
+        item.addEventListener('click', () => {
+            const parent = item.parentElement;
+
+            // Close other open items
+            document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                if (otherItem !== parent) {
+                    otherItem.classList.remove('active');
+                }
+            });
+
+            // Toggle current item
+            parent.classList.toggle('active');
+        });
+    });
+
+    // Split-Screen Layout Functionality
+    document.querySelectorAll('.menu ul li').forEach(item => {
+        item.addEventListener('click', () => {
+            const contentId = item.getAttribute('data-content');
+
+            // Toggle menu active class
+            document.querySelectorAll('.menu ul li').forEach(li => li.classList.remove('active'));
+            item.classList.add('active');
+
+            // Toggle content visibility
+            document.querySelectorAll('.content-item').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(contentId).classList.add('active');
+        });
+    });
+</script>
+
+</body>
+</html>
